@@ -31,14 +31,9 @@ public class Cliente {
 	private String telefonoCli;
 	private Date fechaNacimientoCli;
 	
-	@OneToMany(mappedBy = "alquiler")
+	@OneToMany(mappedBy = "cliente")
 	private Set<Alquiler> alquileres;
 	
-
-	public Cliente() {
-		// TODO Auto-generated constructor stub
-	}
-
 
 	public Integer getIdCli() {
 		return idCli;
@@ -89,14 +84,14 @@ public class Cliente {
 		this.fechaNacimientoCli = fechaNacimientoCli;
 	}
 
-
-	public Set<Alquiler> getAlquilados() {
+	public Set<Alquiler> getAlquileres() {
 		return alquileres;
 	}
 
 
-	public void setAlquilados(Set<Alquiler> alquileres) {
+	public void setAlquileres(Set<Alquiler> alquileres) {
 		this.alquileres = alquileres;
 	}
+
 
 }

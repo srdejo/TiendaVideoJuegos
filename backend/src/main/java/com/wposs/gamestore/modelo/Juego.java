@@ -36,9 +36,13 @@ public class Juego {
 	private String precioJue;
 	
 
-	@OneToMany(mappedBy = "alquiler")
+	@OneToMany(mappedBy = "juego")
 	private Set<Alquiler> alquilados;
-	
+
+	@ManyToOne
+	@JoinColumn(name="idTec")
+	private Tecnologia tecnologia;
+
 	public Integer getIdJue() {
 		return idJue;
 	}
@@ -94,7 +98,7 @@ public class Juego {
 	public void setPrecioJue(String precioJue) {
 		this.precioJue = precioJue;
 	}
-
+/*
 	public Set<Alquiler> getAlquilados() {
 		return alquilados;
 	}
@@ -110,8 +114,5 @@ public class Juego {
 	public void setTecnologia(Tecnologia tecnologia) {
 		this.tecnologia = tecnologia;
 	}
-
-	@ManyToOne
-	@JoinColumn(name="idTec")
-	private Tecnologia tecnologia;
+*/
 }

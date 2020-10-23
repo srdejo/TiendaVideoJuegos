@@ -29,7 +29,7 @@ public class Tecnologia {
 	private String nombreTec;
 
 	@OneToMany(mappedBy = "tecnologia")
-	private Set<Alquiler> tecnologias;
+	private Set<Juego> juegos;
 
 	public Integer getIdTec() {
 		return idTec;
@@ -47,11 +47,12 @@ public class Tecnologia {
 		this.nombreTec = nombreTec;
 	}
 
-	public Set<Alquiler> getTecnologias() {
-		return tecnologias;
+	public Set<Juego> getJuegos() {
+		return juegos;
 	}
 
-	public void setTecnologias(Set<Alquiler> tecnologias) {
-		this.tecnologias = tecnologias;
+	public void setJuegos(Set<Juego> juegos) {
+		this.juegos = juegos;
 	}
+
 }
