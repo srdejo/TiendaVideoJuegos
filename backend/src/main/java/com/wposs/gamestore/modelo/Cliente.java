@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -29,6 +31,7 @@ public class Cliente {
 	private String nombreCli;
 	private String documentoCli;
 	private String telefonoCli;
+	@Temporal(TemporalType.DATE)
 	private Date fechaNacimientoCli;
 	
 	@OneToMany(mappedBy = "cliente")

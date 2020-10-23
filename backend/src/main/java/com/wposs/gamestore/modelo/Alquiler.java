@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author Daniel
@@ -25,9 +27,11 @@ public class Alquiler {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer idAlq;
-	
+	@Temporal(TemporalType.DATE)
 	private Date fechaAlq;
+	@Temporal(TemporalType.DATE)
 	private Date fechaVencimientoAlq;
+	@Temporal(TemporalType.DATE)
 	private Date fechaEntregaAlq;
 
 	@ManyToOne
