@@ -6,4 +6,6 @@ import com.wposs.gamestore.modelo.Cliente;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Integer>{
 
+	Cliente findByDocumentoCli(String documentoCli);
+
 }

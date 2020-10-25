@@ -1,5 +1,7 @@
 package com.wposs.gamestore.negocio.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,6 +45,15 @@ public class ClienteService {
 	@Transactional
 	public void delete(Cliente cliente) {
 		this.clienteRepository.delete(cliente);
+	}
+
+	public Cliente findByDocumento(String documentoCli) {
+		return this.clienteRepository.findByDocumentoCli(documentoCli);
+	}
+
+	public List<Cliente> findAll() {
+		// TODO Auto-generated method stub
+		return this.clienteRepository.findAll();
 	}
 	
 }
