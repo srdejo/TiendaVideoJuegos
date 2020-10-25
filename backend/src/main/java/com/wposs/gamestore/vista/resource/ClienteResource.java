@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping(name = "/api/cliente")
+@RequestMapping("/api/cliente")
 @Api(tags = "cliente")
 public class ClienteResource {
 
