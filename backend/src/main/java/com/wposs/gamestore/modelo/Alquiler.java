@@ -28,7 +28,7 @@ public class Alquiler {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer idAlq;
 	@Temporal(TemporalType.DATE)
-	private Date fechaAlq;
+	private Date fechaAlq = new Date();
 	@Temporal(TemporalType.DATE)
 	private Date fechaVencimientoAlq;
 	@Temporal(TemporalType.DATE)

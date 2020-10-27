@@ -33,7 +33,7 @@ public class Juego {
 	private String protagonistaJue;
 	private String productorJue;
 	private String marcaJue;
-	private String precioJue;
+	private Integer precioJue;
 	
 
 	@OneToMany(mappedBy = "juego")
@@ -91,14 +91,14 @@ public class Juego {
 		this.marcaJue = marcaJue;
 	}
 
-	public String getPrecioJue() {
+	public Integer getPrecioJue() {
 		return precioJue;
 	}
 
-	public void setPrecioJue(String precioJue) {
+	public void setPrecioJue(Integer precioJue) {
 		this.precioJue = precioJue;
 	}
-/*
+
 	public Set<Alquiler> getAlquilados() {
 		return alquilados;
 	}
@@ -114,5 +114,5 @@ public class Juego {
 	public void setTecnologia(Tecnologia tecnologia) {
 		this.tecnologia = tecnologia;
 	}
-*/
+
 }

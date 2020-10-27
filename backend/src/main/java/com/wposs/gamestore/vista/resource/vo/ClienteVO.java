@@ -22,60 +22,41 @@ import javax.persistence.TemporalType;
  */
 public class ClienteVO {
 	
-	private Integer idCli;
+	private Integer id;
 	
-	private String nombreCli;
-	private String documentoCli;
-	private String telefonoCli;
-	private Date fechaNacimientoCli;
-
-	public Integer getIdCli() {
-		return idCli;
+	private String nombre;
+	private String documento;
+	private String telefono;
+	private Date fechaNacimiento;
+	public Integer getId() {
+		return id;
 	}
-
-	public void setIdCli(Integer idCli) {
-		this.idCli = idCli;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-
-
-	public String getNombreCli() {
-		return nombreCli;
+	public String getNombre() {
+		return nombre;
 	}
-
-
-	public void setNombreCli(String nombreCli) {
-		this.nombreCli = nombreCli;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-
-
-	public String getDocumentoCli() {
-		return documentoCli;
+	public String getDocumento() {
+		return documento;
 	}
-
-
-	public void setDocumentoCli(String documentoCli) {
-		this.documentoCli = documentoCli;
+	public void setDocumento(String documento) {
+		this.documento = documento;
 	}
-
-
-	public String getTelefonoCli() {
-		return telefonoCli;
+	public String getTelefono() {
+		return telefono;
 	}
-
-
-	public void setTelefonoCli(String telefonoCli) {
-		this.telefonoCli = telefonoCli;
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
-
-
-	public Date getFechaNacimientoCli() {
-		return fechaNacimientoCli;
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
 	}
-
-
-	public void setFechaNacimientoCli(Date fechaNacimientoCli) {
-		this.fechaNacimientoCli = fechaNacimientoCli;
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
-
 
 }

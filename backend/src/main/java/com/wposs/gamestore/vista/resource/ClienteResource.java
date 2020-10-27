@@ -39,10 +39,10 @@ public class ClienteResource {
 			@ApiResponse(code = 400, message = "Solicitud Invalida")})
 	public ResponseEntity<Cliente> createCliente(@RequestBody ClienteVO clienteVO) {
 		Cliente cliente = new Cliente();
-		cliente.setDocumentoCli(clienteVO.getDocumentoCli());
-		cliente.setFechaNacimientoCli(clienteVO.getFechaNacimientoCli());
-		cliente.setNombreCli(clienteVO.getNombreCli());
-		cliente.setTelefonoCli(clienteVO.getTelefonoCli());
+		cliente.setDocumentoCli(clienteVO.getDocumento());
+		cliente.setFechaNacimientoCli(clienteVO.getFechaNacimiento());
+		cliente.setNombreCli(clienteVO.getNombre());
+		cliente.setTelefonoCli(clienteVO.getTelefono());
 
 		return new ResponseEntity<>(this.clienteService.create(cliente), HttpStatus.CREATED);
 	}
@@ -57,10 +57,10 @@ public class ClienteResource {
 		if (cliente == null) {
 			return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
 		} else {
-			cliente.setDocumentoCli(clienteVO.getDocumentoCli());
-			cliente.setFechaNacimientoCli(clienteVO.getFechaNacimientoCli());
-			cliente.setNombreCli(clienteVO.getNombreCli());
-			cliente.setTelefonoCli(clienteVO.getTelefonoCli());
+			cliente.setDocumentoCli(clienteVO.getDocumento());
+			cliente.setFechaNacimientoCli(clienteVO.getFechaNacimiento());
+			cliente.setNombreCli(clienteVO.getNombre());
+			cliente.setTelefonoCli(clienteVO.getTelefono());
 		}
 
 		return new ResponseEntity<>(this.clienteService.create(cliente), HttpStatus.CREATED);
@@ -83,5 +83,18 @@ public class ClienteResource {
 			@ApiResponse(code = 404, message = "Clientes no encontrados")})
 	public ResponseEntity<List<Cliente>> findAll(){
 		return ResponseEntity.ok(this.clienteService.findAll());
+	}
+	
+	@GetMapping("/{documento}")
+	@ApiOperation(value = "Listar un cliente", notes = "Servicio para listar un cliente")
+	@ApiResponses(value = {@ApiResponse(code = 201, message = "Clientes encontrado"),
+			@ApiResponse(code = 404, message = "Clientes no encontrados")})
+	public ResponseEntity<Cliente> find(@PathVariable("documento") String documento){
+		Cliente cliente = this.clienteService.findByDocumento(documento);
+		if (cliente == null) {
+			return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
+		} else {
+			return ResponseEntity.ok(cliente);			
+		}
 	}
 }
