@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
 
 
 /**
@@ -28,9 +30,13 @@ public class Cliente {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer idCli;
 	
+	@NotNull
 	private String nombreCli;
+	@NotNull
 	private String documentoCli;
+	@NotNull
 	private String telefonoCli;
+	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Date fechaNacimientoCli;
 	

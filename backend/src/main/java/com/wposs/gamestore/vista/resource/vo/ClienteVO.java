@@ -5,9 +5,7 @@ package com.wposs.gamestore.vista.resource.vo;
 
 import java.util.Date;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
 
 
 
@@ -19,16 +17,16 @@ import javax.validation.constraints.NotNull;
 public class ClienteVO {
 	
 	private Integer id;
-	
+
 	@NotNull
 	private String nombre;
-	
+
 	@NotNull
 	private String documento;
-	
+
 	@NotNull
 	private String telefono;
-	
+
 	@NotNull
 	private Date fechaNacimiento;
 	
