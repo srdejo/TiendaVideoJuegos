@@ -3,6 +3,8 @@
  */
 package com.wposs.gamestore.vista.resource.vo;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author Daniel
@@ -13,14 +15,17 @@ public class JuegoVO {
 	
 
 	private Integer idJue;
-
+	@NotEmpty
 	private String nombreJue;
+	@NotNull
+	private Integer precioJue;
 	private String directorJue;
 	private String protagonistaJue;
 	private String productorJue;
 	private String marcaJue;
-	private Integer precioJue;
-	
+
+	@NotNull
+	private Integer idTecnologia;
 
 	public Integer getIdJue() {
 		return idJue;
@@ -76,6 +81,14 @@ public class JuegoVO {
 
 	public void setPrecioJue(Integer precioJue) {
 		this.precioJue = precioJue;
+	}
+
+	public Integer getIdTecnologia() {
+		return idTecnologia;
+	}
+
+	public void setIdTecnologia(Integer idTecnologia) {
+		this.idTecnologia = idTecnologia;
 	}
 
 }

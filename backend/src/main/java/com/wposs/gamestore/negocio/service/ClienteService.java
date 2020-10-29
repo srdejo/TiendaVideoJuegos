@@ -56,7 +56,7 @@ public class ClienteService {
 	}
 
 	public Cliente findById(Integer id) {
-		return this.clienteRepository.getOne(id);
+		return this.clienteRepository.findByIdCli(id);
 	}
 	
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ClienteService } from 'src/app/cliente.service';
+import { ClienteService } from 'src/app/service/cliente.service';
 
 
 @Component({
@@ -18,6 +18,10 @@ export class ClientePage implements OnInit {
   });
 
   isCargando: boolean;
+  
+  isEdit: boolean;
+  idCliente: number;
+  titulo: string;
 
   clientes: {};
 
@@ -26,6 +30,8 @@ export class ClientePage implements OnInit {
     private _clienteService: ClienteService) {
 
     this.isCargando = false;
+    this.isEdit = false;
+    this.titulo = "Agregar"
   }  
 
   ngOnInit() {
@@ -34,20 +40,11 @@ export class ClientePage implements OnInit {
 
   onSubmit() {
     this.isCargando = true;
-    this._clienteService.crearCliente(this.registroForm.value)
-      .subscribe(
-        response => {
-          this.isCargando = false;
-          this._clienteService.presentToast('Cliente creado exitosamente');
-          this.registroForm.reset();
-          this.todos();
-        },
-        error => {
-          console.log(<any>error)
-          this.isCargando = false;
-          this._clienteService.presentToast('Error al crear el cliente')
-        }
-      );
+    if (this.isEdit){
+      this.actualizar()
+    }else{
+      this.guardar();
+    }
   }
 
   eliminar(id){
@@ -74,5 +71,63 @@ export class ClientePage implements OnInit {
         console.log(<any>error);
       }
     )
+  }
+
+  guardar(){    
+    this._clienteService.crearCliente(this.registroForm.value)
+      .subscribe(
+        response => {
+          this.isCargando = false;
+          this._clienteService.presentToast('Cliente creado exitosamente');
+          this.registroForm.reset();
+          this.todos();
+        },
+        error => {
+          console.log(<any>error)
+          this.isCargando = false;
+          this._clienteService.presentToast('Error al crear el cliente')
+        }
+      );
+  }
+
+  editar(id){
+    this.isEdit = true
+    this.idCliente = id;
+    this.titulo = "Editar"
+    this._clienteService.listarCliente(this.idCliente)
+    .subscribe(
+      response => {
+        console.log(response.documentoCli)
+        this.registroForm.patchValue({
+          documento: response.documentoCli,
+          nombre: response.nombreCli,
+          telefono: response.telefonoCli,
+          fechaNacimiento: response.fechaNacimientoCli
+        });
+      },
+      error => {
+        console.log(<any>error)
+        this._clienteService.presentToast('Error al cargar el cliente')
+      }
+    )
+  }
+
+  actualizar(){    
+    console.log(this.idCliente)
+    this._clienteService.actualizarCliente(this.idCliente, this.registroForm.value)
+      .subscribe(
+        response => {
+          this.isCargando = false;
+          this._clienteService.presentToast('Cliente actualizado exitosamente');
+          this.registroForm.reset();
+          this.todos();
+          this.isEdit = false;
+        },
+        error => {
+          console.log(<any>error)
+          this.isCargando = false;
+          this._clienteService.presentToast('Error al actualizar el cliente')
+        }
+      );
   }
 }

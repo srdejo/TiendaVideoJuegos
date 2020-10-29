@@ -6,6 +6,7 @@ package com.wposs.gamestore.modelo;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,10 +37,10 @@ public class Juego {
 	private Integer precioJue;
 	
 
-	@OneToMany(mappedBy = "juego")
+	@OneToMany(mappedBy = "juego", fetch = FetchType.LAZY)
 	private Set<Alquiler> alquilados;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="idTec")
 	private Tecnologia tecnologia;
 

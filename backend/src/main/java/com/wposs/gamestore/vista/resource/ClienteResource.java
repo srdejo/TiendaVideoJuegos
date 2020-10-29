@@ -55,7 +55,7 @@ public class ClienteResource {
 	@ApiOperation(value = "Actualizar un cliente", notes = "Servicio para actualizar un cliente")
 	@ApiResponses(value = {@ApiResponse(code = 201, message = "Cliente actualizado correctamente"),
 			@ApiResponse(code = 404, message = "Cliente no encontrado")})
-	public ResponseEntity<Cliente> updateCliente(@PathVariable("id") Integer id, ClienteVO clienteVO) {
+	public ResponseEntity<Cliente> updateCliente(@PathVariable("id") Integer id,@Valid @RequestBody ClienteVO clienteVO) {
 
 		Cliente cliente = this.clienteService.findById(id);
 		if (cliente == null) {
@@ -65,9 +65,9 @@ public class ClienteResource {
 			cliente.setFechaNacimientoCli(clienteVO.getFechaNacimiento());
 			cliente.setNombreCli(clienteVO.getNombre());
 			cliente.setTelefonoCli(clienteVO.getTelefono());
-		}
 
-		return new ResponseEntity<>(this.clienteService.create(cliente), HttpStatus.CREATED);
+			return new ResponseEntity<>(this.clienteService.update(cliente), HttpStatus.CREATED);
+		}
 	}
 	
 	@DeleteMapping("/{id}")
@@ -89,12 +89,12 @@ public class ClienteResource {
 		return ResponseEntity.ok(this.clienteService.findAll());
 	}
 	
-	@GetMapping("/{documento}")
+	@GetMapping("/{id}")
 	@ApiOperation(value = "Listar un cliente", notes = "Servicio para listar un cliente")
 	@ApiResponses(value = {@ApiResponse(code = 201, message = "Clientes encontrado"),
 			@ApiResponse(code = 404, message = "Clientes no encontrados")})
-	public ResponseEntity<Cliente> find(@PathVariable("documento") String documento){
-		Cliente cliente = this.clienteService.findByDocumento(documento);
+	public ResponseEntity<Cliente> find(@PathVariable("id") Integer id){
+		Cliente cliente = this.clienteService.findById(id);
 		if (cliente == null) {
 			return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
 		} else {

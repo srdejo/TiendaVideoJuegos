@@ -26,6 +26,10 @@ public class TecnologiaService {
 	public List<Tecnologia> findAll() {
 		return this.tecnologiaRepository.findAll();
 	}
+
+	public Tecnologia findByIdTec(Integer id) {
+		return this.tecnologiaRepository.findByidTec(id);
+	}
 	
 
 }

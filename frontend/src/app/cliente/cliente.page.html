@@ -9,7 +9,7 @@
     <ion-col size="6">
       <ion-card>
         <ion-card-header>
-          <ion-card-title>Agregar un cliente</ion-card-title>
+          <ion-card-title>{{titulo}} un cliente</ion-card-title>
         </ion-card-header>
         <ion-card-content>
           <form [formGroup]="registroForm" (ngSubmit)="onSubmit()" novalidate>
@@ -54,7 +54,7 @@
 
       <ion-list>
         <ion-item *ngFor="let cliente of clientes; index as i; first as isFirst">
-          <ion-button slot="end"  color="light" (click)="eliminar(cliente.idCli)"><ion-icon name="create" ></ion-icon></ion-button>
+          <ion-button slot="end"  color="light" (click)="editar(cliente.idCli)"><ion-icon name="create" ></ion-icon></ion-button>
           <ion-button slot="end"  color="light" (click)="eliminar(cliente.idCli)"><ion-icon name="close" ></ion-icon></ion-button>
           <ion-label><h2>{{cliente.nombreCli}}</h2>
             <h3>Documento: {{cliente.documentoCli}}</h3>
