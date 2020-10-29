@@ -1,51 +1,31 @@
 /**
  * 
  */
-package com.wposs.gamestore.modelo;
+package com.wposs.gamestore.vista.resource.vo;
 
-import java.util.Set;
-
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author Daniel
  *
  */
 
-@Entity
-@Table(name="juego")
-public class Juego {
+public class JuegoVO {
 	
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer idJue;
-
+	@NotEmpty
 	private String nombreJue;
+	@NotNull
+	private Integer precioJue;
 	private String directorJue;
 	private String protagonistaJue;
 	private String productorJue;
 	private String marcaJue;
-	private Integer precioJue;
-	
 
-	@OneToMany(mappedBy = "juego", fetch = FetchType.LAZY)
-	private Set<Alquiler> alquilados;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="idTec")
-	@JsonIgnore
-	private Tecnologia tecnologia;
+	@NotNull
+	private Integer idTecnologia;
 
 	public Integer getIdJue() {
 		return idJue;
@@ -103,20 +83,12 @@ public class Juego {
 		this.precioJue = precioJue;
 	}
 
-	public Set<Alquiler> getAlquilados() {
-		return alquilados;
+	public Integer getIdTecnologia() {
+		return idTecnologia;
 	}
 
-	public void setAlquilados(Set<Alquiler> alquilados) {
-		this.alquilados = alquilados;
-	}
-
-	public Tecnologia getTecnologia() {
-		return tecnologia;
-	}
-
-	public void setTecnologia(Tecnologia tecnologia) {
-		this.tecnologia = tecnologia;
+	public void setIdTecnologia(Integer idTecnologia) {
+		this.idTecnologia = idTecnologia;
 	}
 
 }

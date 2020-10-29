@@ -4,16 +4,10 @@
 package com.wposs.gamestore.vista.resource.vo;
 
 import java.util.Date;
-import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+
 
 
 /**
@@ -23,11 +17,20 @@ import javax.persistence.TemporalType;
 public class ClienteVO {
 	
 	private Integer id;
-	
+
+	@NotNull
 	private String nombre;
+
+	@NotNull
 	private String documento;
+
+	@NotNull
 	private String telefono;
+
+	@NotNull
 	private Date fechaNacimiento;
+	
+	
 	public Integer getId() {
 		return id;
 	}

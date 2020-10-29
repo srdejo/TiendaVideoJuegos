@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>juego</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="ion-align-items-center ion-justify-content-center">
+    <ion-col size="6">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{titulo}} un juego</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <form [formGroup]="registroForm" (ngSubmit)="onSubmit()" novalidate>
+            <ion-list class="ion-padding-end">
+              <ion-item lines="inset">
+                <ion-label position="floating">Nombre</ion-label>
+                <ion-input type="text" formControlName="nombreJue"></ion-input>
+              </ion-item>
+
+              <ion-item lines="inset">
+                <ion-label position="floating">Director</ion-label>
+                <ion-input type="text" formControlName="directorJue"></ion-input>
+              </ion-item>
+
+              <ion-item lines="inset">
+                <ion-label position="floating">Protagonista</ion-label>
+                <ion-input type="text" formControlName="protagonistaJue"></ion-input>
+              </ion-item>
+
+              <ion-item lines="inset">
+                <ion-label position="floating">Productor</ion-label>
+                <ion-input type="text" formControlName="productorJue"></ion-input>
+              </ion-item>
+              
+              <ion-item lines="inset">
+                <ion-label position="floating">Marca</ion-label>
+                <ion-input type="text" formControlName="marcaJue"></ion-input>
+              </ion-item>
+              
+              <ion-item lines="inset">
+                <ion-label position="floating">Precio</ion-label>
+                <ion-input type="number" formControlName="precioJue"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Tecnologia</ion-label>
+                <ion-select  okText="Seleccionar" cancelText="Cancelar"  formControlName="idTecnologia">
+                  <ion-select-option  *ngFor="let tecnologia of tecnologias; index as i; first as isFirst" [value]="tecnologia.idTec">{{tecnologia.nombreTec}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+
+            <section class="ion-padding-top">
+              <ion-button type="submit" expand="block" [disabled]="this.registroForm.invalid || this.isCargando"
+                class="ion-margin-horizontal">
+                <ion-spinner slot="start" name="bubbles" class="ion-margin-end" *ngIf="isCargando"></ion-spinner>
+                CONTINUAR
+              </ion-button>
+            </section>
+          </form>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-align-items-center ion-justify-content-center">
+    <ion-col size="6">
+
+      <ion-list>
+        <ion-item *ngFor="let juego of juegos; index as i; first as isFirst">
+          <ion-button slot="end"  color="light" (click)="editar(juego.idJue)"><ion-icon name="create" ></ion-icon></ion-button>
+          <ion-button slot="end"  color="light" (click)="eliminar(juego.idJue)"><ion-icon name="close" ></ion-icon></ion-button>
+          <ion-label><h2>{{juego.nombreJue}}</h2>
+            <h3>${{juego.precioJue}}</h3>
+            <p>{{juego.directorJue}} - 
+              {{juego.protagonistaJue}} - 
+              {{juego.productorJue}} - 
+              {{juego.marcaJue}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+    </ion-col>
+  </ion-row>
+</ion-content>

@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>cliente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="ion-align-items-center ion-justify-content-center">
+    <ion-col size="6">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{titulo}} un cliente</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <form [formGroup]="registroForm" (ngSubmit)="onSubmit()" novalidate>
+            <ion-list class="ion-padding-end">
+
+              <ion-item lines="inset">
+                <ion-label position="floating">Número de documento</ion-label>
+                <ion-input type="number" formControlName="documento"></ion-input>
+              </ion-item>
+
+              <ion-item lines="inset">
+                <ion-label position="floating">Nombre completo</ion-label>
+                <ion-input type="text" formControlName="nombre"></ion-input>
+              </ion-item>
+
+              <ion-item lines="inset">
+                <ion-label position="floating">Número de celular</ion-label>
+                <ion-input type="number" formControlName="telefono"></ion-input>
+              </ion-item>
+
+              <ion-item lines="inset">
+                <ion-label position="stacked">Fecha de nacimiento</ion-label>
+                <ion-input type="date" formControlName="fechaNacimiento"></ion-input>
+              </ion-item>
+            </ion-list>
+
+            <section class="ion-padding-top">
+              <ion-button type="submit" expand="block" [disabled]="this.registroForm.invalid || this.isCargando"
+                class="ion-margin-horizontal">
+                <ion-spinner slot="start" name="bubbles" class="ion-margin-end" *ngIf="isCargando"></ion-spinner>
+                CONTINUAR
+              </ion-button>
+            </section>
+          </form>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-align-items-center ion-justify-content-center">
+    <ion-col size="6">
+
+      <ion-list>
+        <ion-item *ngFor="let cliente of clientes; index as i; first as isFirst">
+          <ion-button slot="end"  color="light" (click)="editar(cliente.idCli)"><ion-icon name="create" ></ion-icon></ion-button>
+          <ion-button slot="end"  color="light" (click)="eliminar(cliente.idCli)"><ion-icon name="close" ></ion-icon></ion-button>
+          <ion-label><h2>{{cliente.nombreCli}}</h2>
+            <h3>Documento: {{cliente.documentoCli}}</h3>
+            <p>Telefono: {{cliente.telefonoCli}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+    </ion-col>
+  </ion-row>
+</ion-content>

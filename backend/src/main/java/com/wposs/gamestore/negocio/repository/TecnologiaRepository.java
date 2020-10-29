@@ -6,4 +6,6 @@ import com.wposs.gamestore.modelo.Tecnologia;
 
 public interface TecnologiaRepository extends JpaRepository<Tecnologia, Integer>{
 
+	Tecnologia findByidTec(Integer id);
+
 }

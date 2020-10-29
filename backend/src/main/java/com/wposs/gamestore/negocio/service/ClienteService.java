@@ -54,5 +54,9 @@ public class ClienteService {
 	public List<Cliente> findAll() {
 		return this.clienteRepository.findAll();
 	}
+
+	public Cliente findById(Integer id) {
+		return this.clienteRepository.findByIdCli(id);
+	}
 	
 }
