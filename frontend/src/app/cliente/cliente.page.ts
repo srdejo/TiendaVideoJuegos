@@ -102,7 +102,8 @@ export class ClientePage implements OnInit {
           documento: response.documentoCli,
           nombre: response.nombreCli,
           telefono: response.telefonoCli,
-          fechaNacimiento: response.fechaNacimientoCli
+          fechaNacimiento: response.fechaNacimientoCli,
+          idTecnologia: response.idTecnologia
         });
       },
       error => {

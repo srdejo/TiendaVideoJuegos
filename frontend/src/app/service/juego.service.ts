@@ -45,11 +45,11 @@ export class JuegoService {
   }
 
   eliminarJuego(id: number): Observable<any>{
-    return this._http.delete(`${this.url}/juego/${id}`, httpOptions);
+    return this._http.delete(`${this.url}juego/${id}`, httpOptions);
   }
 
   listarJuego(id: number): Observable<any>{
-    return this._http.get(`${this.url}/juego/${id}`, httpOptions);
+    return this._http.get(`${this.url}juego/${id}`, httpOptions);
   }
 
 

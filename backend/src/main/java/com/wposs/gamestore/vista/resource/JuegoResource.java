@@ -96,29 +96,29 @@ public class JuegoResource {
 		return ResponseEntity.ok(this.juegoService.findAll());
 	}
 	
-	@GetMapping("/{nombre}")
-	@ApiOperation(value = "Listar un juego", notes = "Servicio para listar un juego")
-	@ApiResponses(value = {@ApiResponse(code = 201, message = "Juego encontrado"),
-			@ApiResponse(code = 404, message = "Juego no encontrado")})
-	public ResponseEntity<Juego> find(@PathVariable("nombre") String nombre){
-		Juego juego = this.juegoService.findByNombre(nombre);
-		if (juego == null) {
-			return new ResponseEntity<Juego>(HttpStatus.NOT_FOUND);
-		} else {
-			return ResponseEntity.ok(juego);			
-		}
-	}
 	
-	@GetMapping("/{id}/show")
+	@GetMapping("/{id}")
 	@ApiOperation(value = "Listar un juego por id", notes = "Servicio para listar un juego por id")
 	@ApiResponses(value = {@ApiResponse(code = 201, message = "Juego encontrado"),
 			@ApiResponse(code = 404, message = "Juego no encontrado")})
-	public ResponseEntity<Juego> find(@PathVariable("id") Integer id){
+	public ResponseEntity<JuegoVO> find(@PathVariable("id") Integer id){
 		Juego juego = this.juegoService.findById(id);
+		JuegoVO juegoVO = new JuegoVO();
+		
 		if (juego == null) {
-			return new ResponseEntity<Juego>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<JuegoVO>(HttpStatus.NOT_FOUND);
 		} else {
-			return ResponseEntity.ok(juego);			
+			juegoVO.setIdJue(juego.getIdJue());
+			juegoVO.setDirectorJue(juego.getDirectorJue());
+			juegoVO.setDirectorJue(juego.getDirectorJue());
+			juegoVO.setMarcaJue(juego.getMarcaJue());
+			juegoVO.setNombreJue(juego.getNombreJue());
+			juegoVO.setPrecioJue(juego.getPrecioJue());
+			juegoVO.setProductorJue(juego.getProductorJue());
+			juegoVO.setProtagonistaJue(juego.getProtagonistaJue());
+			juegoVO.setIdTecnologia(juego.getTecnologia().getIdTec());
+			
+			return ResponseEntity.ok(juegoVO);			
 		}
 	}
 	

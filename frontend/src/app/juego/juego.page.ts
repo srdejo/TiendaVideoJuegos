@@ -21,7 +21,7 @@ export class JuegoPage implements OnInit {
   });
 
   isCargando: boolean;
-  
+
   isEdit: boolean;
   idJuego: number;
   titulo: string;
@@ -33,9 +33,10 @@ export class JuegoPage implements OnInit {
     private _fb: FormBuilder,
     private _juegoService: JuegoService,
     private _tecnologiaService: TecnologiaService) {
-      this.isCargando = false;
-      this.isEdit = false;
-      this.titulo = "Agregar" }
+    this.isCargando = false;
+    this.isEdit = false;
+    this.titulo = "Agregar"
+  }
 
   ngOnInit() {
     this.todos();
@@ -44,29 +45,29 @@ export class JuegoPage implements OnInit {
 
   onSubmit() {
     this.isCargando = true;
-    if (this.isEdit){
+    if (this.isEdit) {
       this.actualizar()
-    }else{
+    } else {
       this.guardar();
     }
   }
 
-  eliminar(id){
+  eliminar(id) {
     this._juegoService.eliminarJuego(id)
-    .subscribe(
-      response => {
-        this._juegoService.presentToast('juego eliminado exitosamente');
-        this.todos();
-      },
-      error => {
-        console.log(<any>error)
-        this.isCargando = false;
-        this._juegoService.presentToast('Error al eliminar el juego')
-      }
-    );
+      .subscribe(
+        response => {
+          this._juegoService.presentToast('juego eliminado exitosamente');
+          this.todos();
+        },
+        error => {
+          console.log(<any>error)
+          this.isCargando = false;
+          this._juegoService.presentToast('Error al eliminar el juego')
+        }
+      );
   }
 
-  todos(){
+  todos() {
     this._juegoService.listarJuegos().subscribe(
       response => {
         this.juegos = response;
@@ -77,7 +78,7 @@ export class JuegoPage implements OnInit {
     )
   }
 
-  listarTecnologias(){
+  listarTecnologias() {
     this._tecnologiaService.listar().subscribe(
       response => {
         this.tecnologias = response;
@@ -89,7 +90,7 @@ export class JuegoPage implements OnInit {
     )
   }
 
-  guardar(){    
+  guardar() {
     this._juegoService.crearJuego(this.registroForm.value)
       .subscribe(
         response => {
@@ -106,29 +107,31 @@ export class JuegoPage implements OnInit {
       );
   }
 
-  editar(id){
+  editar(id) {
     this.isEdit = true
     this.idJuego = id;
     this.titulo = "Editar"
     this._juegoService.listarJuego(this.idJuego)
-    .subscribe(
-      response => {
-        console.log(response.documentoCli)
-        this.registroForm.patchValue({
-          documento: response.documentoCli,
-          nombre: response.nombreCli,
-          telefono: response.telefonoCli,
-          fechaNacimiento: response.fechaNacimientoCli
-        });
-      },
-      error => {
-        console.log(<any>error)
-        this._juegoService.presentToast('Error al cargar el juego')
-      }
-    )
+      .subscribe(
+        response => {
+          this.registroForm.patchValue({
+            nombreJue: response.nombreJue,
+            directorJue: response.directorJue,
+            protagonistaJue: response.protagonistaJue,
+            productorJue: response.productorJue,
+            marcaJue: response.marcaJue,
+            precioJue: response.precioJue
+          });
+          //this.registroForm.setValue(response)
+        },
+        error => {
+          console.log(<any>error)
+          this._juegoService.presentToast('Error al cargar el juego')
+        }
+      )
   }
 
-  actualizar(){    
+  actualizar() {
     console.log(this.idJuego)
     this._juegoService.actualizarJuego(this.idJuego, this.registroForm.value)
       .subscribe(

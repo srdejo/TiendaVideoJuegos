@@ -57,7 +57,7 @@ public class JuegoService {
 	}
 
 	public Juego findById(Integer id) {
-		return this.juegoRepository.getOne(id);
+		return this.juegoRepository.findByIdJue(id);
 	}
 
 	

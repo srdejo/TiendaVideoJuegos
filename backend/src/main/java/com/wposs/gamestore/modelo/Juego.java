@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author Daniel
  *
@@ -42,6 +44,7 @@ public class Juego {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="idTec")
+	@JsonIgnore
 	private Tecnologia tecnologia;
 
 	public Integer getIdJue() {
