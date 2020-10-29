@@ -2,8 +2,11 @@ package com.wposs.gamestore.vista.resource;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +25,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+@CrossOrigin(origins = "http://localhost:8100")
 @RestController
 @RequestMapping("/api/cliente")
 @Api(tags = "cliente")
@@ -37,7 +41,7 @@ public class ClienteResource {
 	@ApiOperation(value = "Crear un cliente", notes = "Servicio para crear un nuevo cliente")
 	@ApiResponses(value = {@ApiResponse(code = 201, message = "Cliente creado correctamente"),
 			@ApiResponse(code = 400, message = "Solicitud Invalida")})
-	public ResponseEntity<Cliente> createCliente(@RequestBody ClienteVO clienteVO) {
+	public ResponseEntity<Cliente> createCliente(@Valid @RequestBody ClienteVO clienteVO) {
 		Cliente cliente = new Cliente();
 		cliente.setDocumentoCli(clienteVO.getDocumento());
 		cliente.setFechaNacimientoCli(clienteVO.getFechaNacimiento());
@@ -47,13 +51,13 @@ public class ClienteResource {
 		return new ResponseEntity<>(this.clienteService.create(cliente), HttpStatus.CREATED);
 	}
 
-	@PutMapping("/{documento}")
+	@PutMapping("/{id}")
 	@ApiOperation(value = "Actualizar un cliente", notes = "Servicio para actualizar un cliente")
 	@ApiResponses(value = {@ApiResponse(code = 201, message = "Cliente actualizado correctamente"),
 			@ApiResponse(code = 404, message = "Cliente no encontrado")})
-	public ResponseEntity<Cliente> updateCliente(@PathVariable("documento") String documento, ClienteVO clienteVO) {
+	public ResponseEntity<Cliente> updateCliente(@PathVariable("id") Integer id, ClienteVO clienteVO) {
 
-		Cliente cliente = this.clienteService.findByDocumento(documento);
+		Cliente cliente = this.clienteService.findById(id);
 		if (cliente == null) {
 			return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
 		} else {
@@ -66,12 +70,12 @@ public class ClienteResource {
 		return new ResponseEntity<>(this.clienteService.create(cliente), HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping("/{documento}")
+	@DeleteMapping("/{id}")
 	@ApiOperation(value = "Eliminar un cliente", notes = "Servicio para eliminar un cliente")
 	@ApiResponses(value = {@ApiResponse(code = 201, message = "Cliente eliminado correctamente"),
 			@ApiResponse(code = 404, message = "Cliente no encontrado")})
-	public void removeCliente(@PathVariable("documento") String documento) {
-		Cliente cliente = this.clienteService.findByDocumento(documento);
+	public void removeCliente(@PathVariable("id") Integer id) {
+		Cliente cliente = this.clienteService.findById(id);
 		if (cliente != null) {
 			this.clienteService.delete(cliente);
 		}
